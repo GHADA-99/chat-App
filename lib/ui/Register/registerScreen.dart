@@ -1,3 +1,4 @@
+import 'package:chatting_app/ui/Login/loginScreen.dart';
 import 'package:chatting_app/ui/Register/navigator.dart';
 import 'package:chatting_app/ui/Register/viewModel.dart';
 import 'package:flutter/material.dart';
@@ -36,17 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen>implements Connector {
       create: (BuildContext) => viewModel,
       child: Stack(
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-            ),
-            child: Image.asset(
-              'assets/images/pattern.png',
-              fit: BoxFit.fill,
-              width: double.infinity,
-              height: double.infinity,
-            ),
-          ),
+         PatternBack(),
           Scaffold(
             backgroundColor: Colors.transparent,
             resizeToAvoidBottomInset: false,
@@ -98,9 +89,6 @@ class _RegisterScreenState extends State<RegisterScreen>implements Connector {
                             color: Color.fromRGBO(189, 189, 189, 1)),
                       ),
                     ),
-                    // DefaultTextFormField('First Name', 'message', (text){firstName=text;}),
-                    // DefaultTextFormField('E-mail address', 'message', (text){email=text;}),
-                    // DefaultTextFormField('password', 'message', (text){password=text;}),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.09),
                     ElevatedButton(
 
@@ -113,11 +101,23 @@ class _RegisterScreenState extends State<RegisterScreen>implements Connector {
                           Padding(
                             padding: EdgeInsets.all(16),
                             child: Text(
-                              'Login',
+                              'Create Account',
                               style: TextStyle(fontSize: 18),
                             ),
                           ),
                           Icon(Icons.navigate_next),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 24,),
+                    InkWell(
+                      onTap: (){
+                        Navigator.pushReplacementNamed(context, LogInScreen.routeName);
+                      },
+                      child:Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text('Already have an account'),
                         ],
                       ),
                     ),
