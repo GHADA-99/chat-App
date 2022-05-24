@@ -20,9 +20,10 @@ class _RegisterScreenState extends State<RegisterScreen>implements Connector {
   RegisterViewModel viewModel = RegisterViewModel();
 
   String firstName = '';
+  String lastName = '';
+  String userName = '';
 
   String email = '';
-
   String password = '';
   String message ='';
   @override
@@ -55,6 +56,57 @@ class _RegisterScreenState extends State<RegisterScreen>implements Connector {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                    // DefaultTextFormField('E-mail address', 'message', (text){email=text;}),
+                    TextFormField(
+                      validator: (text) {
+                        if (text == null || text.trim().isEmpty) {
+                          return 'Enter letters';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        firstName = text;
+                      },
+                      decoration:const InputDecoration(
+                        labelText: 'first Name',
+                        labelStyle:  TextStyle(
+                            fontSize: 18,
+                            color: Color.fromRGBO(189, 189, 189, 1)),
+                      ),
+                    ),
+                    TextFormField(
+                      validator: (text) {
+                        if (text == null || text.trim().isEmpty) {
+                          return 'Enter letters';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        lastName = text;
+                      },
+                      decoration:const InputDecoration(
+                        labelText: 'lastName',
+                        labelStyle:  TextStyle(
+                            fontSize: 18,
+                            color: Color.fromRGBO(189, 189, 189, 1)),
+                      ),
+                    ),
+                    TextFormField(
+                      validator: (text) {
+                        if (text == null || text.trim().isEmpty) {
+                          return 'Enter a valid user name';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        userName = text;
+                      },
+                      decoration:const InputDecoration(
+                        labelText: 'User Name',
+                        labelStyle:  TextStyle(
+                            fontSize: 18,
+                            color: Color.fromRGBO(189, 189, 189, 1)),
+                      ),
+                    ),
                     TextFormField(
                       validator: (text) {
                         if (text == null || text.trim().isEmpty) {
@@ -134,7 +186,7 @@ class _RegisterScreenState extends State<RegisterScreen>implements Connector {
   void formValidator() {
      if (formKey.currentState?.validate() == true) {
     //create new account from firebase authentication "Logic" must included in view model class
-      viewModel.register(email, password);
+      viewModel.register(email,password,userName,lastName,firstName);
      }
   }
 
@@ -168,5 +220,11 @@ class _RegisterScreenState extends State<RegisterScreen>implements Connector {
             ],
           ),
         ));
+  }
+
+  @override
+  void goToHome() {
+    // TODO: implement goTHome
+    Navigator.pushReplacementNamed(context,LogInScreen.routeName);
   }
 }

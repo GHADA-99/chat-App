@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:chatting_app/Home/homeScreen.dart';
 import 'package:chatting_app/ui/FirebaseErrors.dart';
 import 'package:chatting_app/ui/Login/navigator.dart';
 import 'package:chatting_app/ui/Login/viewModel.dart';
@@ -178,5 +179,11 @@ class _LogInScreenState extends State<LogInScreen> implements Connector{
             ],
           ),
         ));
+  }
+
+  @override
+  void goToHome() {
+    // TODO: implement goToHome
+    Navigator.pushReplacementNamed(context,HomeScreen.routeName);
   }
 }
